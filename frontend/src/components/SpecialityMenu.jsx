@@ -6,7 +6,7 @@ const SpecialityMenu = () => {
   return (
     <div
       id="speciality"
-      className="font-[sans-serif] bg-gradient-to-r from-primary to-indigo-800 py-12 px-4">
+      className="font-[sans-serif] bg-gradient-to-r from-primary to-indigo-800 py-12 px-4 my-5">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-white sm:text-4xl text-2xl font-bold text-center mb-1">
           Find a Doctor By Specialty
