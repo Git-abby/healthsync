@@ -13,7 +13,7 @@ import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div className="mx-4 sm:mx-[10%]">
+    <div className="mx-4 sm:mx-[7%]">
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
