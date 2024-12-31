@@ -90,30 +90,37 @@ export const assets = {
 
 export const specialityData = [
     {
-        speciality: 'General physician',
-        image: General_physician
+        speciality: 'General Physician',
+        image: General_physician,
+        description: 'Experts in diagnosing and treating a wide range of everyday health concerns and medical conditions.'
     },
     {
         speciality: 'Gynecologist',
-        image: Gynecologist
+        image: Gynecologist,
+        description: 'Specialists in women’s health, focusing on reproductive health, pregnancy, and childbirth.'
     },
     {
         speciality: 'Dermatologist',
-        image: Dermatologist
+        image: Dermatologist,
+        description: 'Experts in skin, hair, and nail care, treating conditions like acne, eczema, and skin infections.'
     },
     {
         speciality: 'Pediatricians',
-        image: Pediatricians
+        image: Pediatricians,
+        description: 'Doctors specializing in the health and development of infants, children, and adolescents.'
     },
     {
         speciality: 'Neurologist',
-        image: Neurologist
+        image: Neurologist,
+        description: 'Specialists in treating disorders of the brain, spinal cord, and nervous system.'
     },
     {
         speciality: 'Gastroenterologist',
-        image: Gastroenterologist
+        image: Gastroenterologist,
+        description: 'Experts in diagnosing and treating conditions related to the digestive system, including the stomach and intestines.'
     },
-]
+];
+
 
 
 export const doctors = [
