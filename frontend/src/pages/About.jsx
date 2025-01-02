@@ -8,7 +8,7 @@ const About = () => {
         <div className="flex items-center">
           <img
             src={assets.about_image}
-            className="object-contain h-[300px] max-sm:h-32 rounded-md"
+            className="object-contain h-[300px] max-sm:h-32 rounded-md hover:rotate-12 duration-500 transition-transform transform-gpu"
           />
           <div className="ml-6">
             <div>
@@ -127,5 +127,4 @@ const About = () => {
     </div>
   );
 };
-
 export default About;
