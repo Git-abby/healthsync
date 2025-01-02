@@ -54,7 +54,7 @@ function Doctors() {
             <div
               key={index}
               onClick={() => navigate(`/appointment/${doctor._id}`)}
-              className="border rounded-md overflow-hidden max-md:max-w-[300px] hover:scale-105 transition-all">
+              className="border rounded-md overflow-hidden max-md:max-w-[300px] hover:scale-105 transition-all cursor-pointer">
               <img
                 src={doctor.image}
                 className="w-full h-60 object-contain object-top bg-gray-200"
