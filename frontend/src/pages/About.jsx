@@ -4,18 +4,18 @@ import { assets } from "../assets/assets";
 const About = () => {
   return (
     <div className="flex flex-col gap-y-6">
-      <div className="border rounded-md grid md:grid-cols-2 md:items-center gap-6 md:h-[400px] font-[sans-serif] max-w-full mx-auto relative px-4 md:mt-4 md:before:absolute md:before:right-0 md:before:w-[300px] md:before:rounded-md md:before:h-full md:before:bg-primary-light">
-        <div className="flex items-center">
+      <div className="border rounded-md grid md:grid-cols-2 md:items-center gap-6 md:h-[400px] font-[sans-serif] max-w-full mx-auto relative px-4 md:mt-4 md:before:absolute md:before:right-0 md:before:w-[300px] md:before:rounded-md md:before:h-full ">
+        <div className="flex items-center bg-primary-light rounded-md">
           <img
             src={assets.about_image}
             className="object-contain h-[300px] max-sm:h-32 rounded-md hover:rotate-12 duration-500 transition-transform transform-gpu"
           />
           <div className="ml-6">
             <div>
-              <h4 className="text-xl font-semibold text-gray-500">
-                About <span className="text-gray-800">US</span>
+              <h4 className="text-xl font-semibold text-white">
+                About <span className="text-white">US</span>
               </h4>
-              <p className="text-xs text-gray-500 mt-0.5">
+              <p className="text-xs text-white mt-0.5">
                 Your Trusted Healthcare Companion
               </p>
             </div>
