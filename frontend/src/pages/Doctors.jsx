@@ -49,7 +49,7 @@ function Doctors() {
             </ul>
           {/* </div> */}
         </nav>
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-8 max-md:justify-center">
+        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 max-md:justify-center">
           {filterDoctors.slice(0, 10).map((doctor, index) => (
             <div
               key={index}
