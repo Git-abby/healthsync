@@ -19,6 +19,7 @@ import profile_pic from "./assets_frontend/profile_pic.png";
 import contact_image from "./assets_frontend/contact_image.png";
 import about_image from "./assets_frontend/about_image.png";
 import logo from "./assets_frontend/logo.svg";
+import logo_transparent from './assets_frontend/logo-transparent.png'
 import dropdown_icon from "./assets_frontend/dropdown_icon.svg";
 import menu_icon from "./assets_frontend/menu_icon.svg";
 import cross_icon from "./assets_frontend/cross_icon.png";
@@ -69,6 +70,7 @@ export const assets = {
   header_img,
   group_profiles,
   logo,
+  logo_transparent,
   chats_icon,
   verified_icon,
   info_icon,
