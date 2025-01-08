@@ -87,43 +87,43 @@ const About = () => {
           </p>
         </div>
       </div>
-      <div className="flex flex-col gap-y-3 mt-3">
-        <h1 className="text-xl">
-          WHY <span className="font-bold">CHOOSE US?</span>
-        </h1>
-        <div className="w-full border flex items-center justify-evenly">
-          {/* Feature 1 */}
-          <div className="border px-20 py-10 flex flex-col gap-y-4 group hover:bg-primary-light hover:shadow-lg hover:text-white transition-all duration-300 ease-in-out">
-            <p className="font-bold text-lg transition-all duration-300 group-hover:text-white">
-              EFFICIENCY
-            </p>
-            <p className="text-gray-500 transition-all duration-300 group-hover:text-white">
-              Streamlined appointment scheduling tailored to fit your busy
-              lifestyle.
-            </p>
-          </div>
+      <div className="flex flex-col gap-y-6 mt-6">
+  <h1 className="text-2xl font-semibold text-gray-800 text-center">
+    WHY <span className="font-bold text-primary-dark">CHOOSE US?</span>
+  </h1>
+  <div className="w-full border border-gray-200 rounded-lg p-4 flex flex-col md:flex-row items-center justify-evenly bg-gray-50 gap-6 md:gap-0">
+    {/* Feature 1 */}
+    <div className="border border-gray-300 px-10 py-6 flex flex-col gap-y-4 items-center text-center group hover:bg-primary-light hover:shadow-xl hover:text-white transition-all duration-300 ease-in-out rounded-lg">
+      <p className="font-bold text-lg transition-all duration-300 group-hover:text-white">
+        EFFICIENCY
+      </p>
+      <p className="text-gray-500 transition-all duration-300 group-hover:text-white">
+        Streamlined appointment scheduling tailored to fit your busy lifestyle.
+      </p>
+    </div>
 
-          {/* Feature 2 */}
-          <div className="border px-20 py-10 flex flex-col gap-y-4 group hover:bg-primary-light hover:shadow-lg hover:text-white transition-all duration-300 ease-in-out">
-            <p className="font-bold text-lg transition-all duration-300 group-hover:text-white">
-              RELIABILITY
-            </p>
-            <p className="text-gray-500 transition-all duration-300 group-hover:text-white">
-              Dependable service you can trust for all your healthcare needs.
-            </p>
-          </div>
+    {/* Feature 2 */}
+    <div className="border border-gray-300 px-10 py-6 flex flex-col gap-y-4 items-center text-center group hover:bg-primary-light hover:shadow-xl hover:text-white transition-all duration-300 ease-in-out rounded-lg">
+      <p className="font-bold text-lg transition-all duration-300 group-hover:text-white">
+        RELIABILITY
+      </p>
+      <p className="text-gray-500 transition-all duration-300 group-hover:text-white">
+        Dependable service you can trust for all your healthcare needs.
+      </p>
+    </div>
 
-          {/* Feature 3 */}
-          <div className="border px-20 py-10 flex flex-col gap-y-4 group hover:bg-primary-light hover:shadow-lg hover:text-white transition-all duration-300 ease-in-out">
-            <p className="font-bold text-lg transition-all duration-300 group-hover:text-white">
-              ACCESSIBILITY
-            </p>
-            <p className="text-gray-500 transition-all duration-300 group-hover:text-white">
-              Healthcare at your fingertips—anytime, anywhere, on any device.
-            </p>
-          </div>
-        </div>
-      </div>
+    {/* Feature 3 */}
+    <div className="border border-gray-300 px-10 py-6 flex flex-col gap-y-4 items-center text-center group hover:bg-primary-light hover:shadow-xl hover:text-white transition-all duration-300 ease-in-out rounded-lg">
+      <p className="font-bold text-lg transition-all duration-300 group-hover:text-white">
+        ACCESSIBILITY
+      </p>
+      <p className="text-gray-500 transition-all duration-300 group-hover:text-white">
+        Healthcare at your fingertips—anytime, anywhere, on any device.
+      </p>
+    </div>
+  </div>
+</div>
+
     </div>
   );
 };

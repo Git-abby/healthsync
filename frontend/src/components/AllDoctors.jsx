@@ -3,6 +3,7 @@ import React from 'react'
 const AllDoctors = () => {
   return (
     <div className="font-[sans-serif] my-4">
+
             <div className="max-w-5xl max-lg:max-w-2xl mx-auto">
                 <div className="max-w-2xl mx-auto text-center">
                     <h2 className="text-gray-800 text-4xl font-extrabold">Meet our team</h2>
