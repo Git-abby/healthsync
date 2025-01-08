@@ -52,7 +52,7 @@ export const Footer = () => {
                 <a href="" className="text-gray-700 hover:text-primary text-sm">+1 (548) XXX-XXXX</a>
               </li>
               <li>
-                <a href="" className="text-gray-700 hover:text-primary text-sm">prescripto@hotmail.com</a>
+                <a href="" className="text-gray-700 hover:text-primary text-sm">HealthSync@hotmail.com</a>
               </li>
             </ul>
           </div>
@@ -79,7 +79,7 @@ export const Footer = () => {
           </div>
         </div>
 
-        <p className='text-gray-700 text-sm mt-10'>© Prescripto. All rights reserved.
+        <p className='text-gray-700 text-sm mt-10'>© HealthSync. All rights reserved.
         </p>
       </div>
     </footer>
