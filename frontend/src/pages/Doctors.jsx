@@ -2,11 +2,14 @@ import React, { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../contexts/AppContext";
 
+import FilterListIcon from "@mui/icons-material/FilterList";
+
 function Doctors() {
   const { speciality } = useParams();
   const { doctors, specialityData } = useContext(AppContext);
   const [filterDoctors, setFilterDoctors] = useState([]);
   const navigate = useNavigate();
+  const [showFilter, setShowFilter] = useState(true);
 
   const applyFilter = () => {
     if (speciality) {
@@ -19,37 +22,46 @@ function Doctors() {
   useEffect(() => {
     applyFilter();
   }, [doctors, speciality]);
+
   return (
-    <div className="flex flex-col justify-center items-start">
+    <div className="flex flex-col items-center md:items-start w-full">
       <p className="my-5 px-8 text-md">Browse through the doctors Specialist</p>
-      <div className="flex gap-x-3">
-        <nav className="bg-white shadow-lg min-w-[240px] px-4 font-[sans-serif]">
-          {/* <div className=""> */}
-            <ul className="">
-              {specialityData.map((item, index) => (
-                <li
-                  key={index}
-                  onClick={() =>
+      <FilterListIcon
+        onClick={() => setShowFilter((prev) => !prev)}
+        className={`cursor-pointer`}
+        sx={{ fontSize: 40, color: `${showFilter ? "#1f7c98" : "black"} ` }}
+      />
+      <div
+        className={`flex gap-x-3  px-8 gap-y-5 flex-col md:flex-row justify-center w-full`}>
+        <nav
+          className={`bg-white shadow-lg min-w-[240px] px-1 font-[sans-serif] w-full  ${
+            showFilter ? "block" : "hidden"
+          }`}>
+          <ul className="">
+            {specialityData.map((item, index) => (
+              <li
+                key={index}
+                onClick={() =>
+                  speciality === item.speciality
+                    ? navigate("/doctors")
+                    : navigate(`/doctors/${item.speciality}`)
+                }>
+                <a
+                  href="javascript:void(0)"
+                  className={`text-black hover:text-blue-600 text-[15px] block hover:bg-blue-50 rounded px-4 py-2.5 transition-all ${
                     speciality === item.speciality
-                      ? navigate("/doctors")
-                      : navigate(`/doctors/${item.speciality}`)
-                  }>
-                  <a
-                    href="javascript:void(0)"
-                    className={`text-black hover:text-blue-600 text-[15px] block hover:bg-blue-50 rounded px-4 py-2.5 transition-all ${
-                      speciality === item.speciality
-                        ? "text-blue-600 bg-blue-50"
-                        : ""
-                    }`}>
-                    {item.speciality}
-                  </a>
-                </li>
-              ))}
-              <li></li>
-            </ul>
+                      ? "text-blue-600 bg-blue-50"
+                      : ""
+                  }`}>
+                  {item.speciality}
+                </a>
+              </li>
+            ))}
+            <li></li>
+          </ul>
           {/* </div> */}
         </nav>
-        <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8 max-md:justify-center">
+        <div className="flex flex-wrap gap-8 max-md:justify-center">
           {filterDoctors.slice(0, 10).map((doctor, index) => (
             <div
               key={index}
