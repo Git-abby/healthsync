@@ -11,12 +11,12 @@ const MyAppointments = () => {
         {doctors.slice(0, 2).map((doctor, index) => (
           <div
             key={index}
-            className="border border-gray-300 rounded-lg p-4 flex items-center gap-x-4 bg-white shadow-sm">
-            <div>
+            className="border border-gray-300 rounded-lg p-4 flex flex-col sm:flex-row items-center gap-4 bg-white shadow-sm">
+            <div className="flex-shrink-0">
               <img
                 src={doctor.image}
                 alt={`Doctor ${doctor.name}`}
-                className="w-32 bg-primary-light object-cover"
+                className="w-full max-w-[128px] h-auto bg-primary-light object-cover rounded"
               />
             </div>
             <div className="flex-1">
@@ -30,10 +30,10 @@ const MyAppointments = () => {
               <p className="text-sm text-gray-600">{doctor.address.line2}</p>
 
               <p className="mt-2 text-sm text-gray-600">
-                Date & Time: 25, july, 2025 | 8:30 PM
+                Date & Time: 25, July, 2025 | 8:30 PM
               </p>
             </div>
-            <div className="flex flex-col gap-y-2">
+            <div className="flex flex-col sm:flex-row gap-y-2 sm:gap-y-0 sm:gap-x-2">
               <button className="bg-primary-light text-white text-sm font-medium py-2 px-4 rounded hover:bg-primary transition-all">
                 Pay Online
               </button>

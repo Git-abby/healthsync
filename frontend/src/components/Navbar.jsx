@@ -9,7 +9,6 @@ import CloseIcon from "@mui/icons-material/Close";
 
 const Navbar = () => {
   const navigate = useNavigate();
-
   const [showMenu, setShowMenu] = useState(false);
   const [token, setToken] = useState(true);
 
@@ -52,7 +51,7 @@ const Navbar = () => {
               alt="profile pic"
             />
             <ArrowDropDownCircle className="w-2.5" />
-            <div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-500 z-20 hidden group-hover:block">
+            <div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-500 z-20  hidden group-hover:block">
               <ul className="min-w-36 bg-stone-50 flex flex-col justify-center items-start gap-y-2 p-4">
                 <li
                   onClick={() => navigate("profile")}
