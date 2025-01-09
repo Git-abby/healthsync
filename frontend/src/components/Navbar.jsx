@@ -4,10 +4,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 
 // ICONS
 import { ArrowDropDown, ArrowDropDownCircle } from "@mui/icons-material";
+import MenuIcon from "@mui/icons-material/Menu";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Navbar = () => {
   const navigate = useNavigate();
-
   const [showMenu, setShowMenu] = useState(false);
   const [token, setToken] = useState(true);
 
@@ -50,7 +51,7 @@ const Navbar = () => {
               alt="profile pic"
             />
             <ArrowDropDownCircle className="w-2.5" />
-            <div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-500 z-20 hidden group-hover:block">
+            <div className="absolute top-0 right-0 pt-14 text-base font-medium text-gray-500 z-20  hidden group-hover:block">
               <ul className="min-w-36 bg-stone-50 flex flex-col justify-center items-start gap-y-2 p-4">
                 <li
                   onClick={() => navigate("profile")}
@@ -77,6 +78,54 @@ const Navbar = () => {
             Create Account
           </button>
         )}
+        <MenuIcon
+          onClick={() => setShowMenu(true)}
+          className="block md:!hidden cursor-pointer"
+        />
+        <div
+          className={`${
+            showMenu ? "fixed w-full" : "h-0 w-0"
+          } md:hidden right-0 top-0 bottom-0 z-20 overflow-hidden bg-white transition-all`}>
+          <div className="border flex justify-between items-center px-5 py-6">
+            <img
+              onClick={() => navigate("/")}
+              className="w-32 cursor-pointer"
+              src={assets.logo_transparent}
+              alt="logo"
+            />
+            <CloseIcon
+              onClick={() => setShowMenu(false)}
+              className="cursor-pointer"
+              sx={{ fontSize: 30 }}
+            />
+          </div>
+          <div className="flex flex-col justify-center items-center text-lg mt-5 font-medium gap-y-2">
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to={"/"}
+              className="hover:text-primary-light transition-colors">
+              <p className="px-3 py-2 rounded inline-block"> Home</p>
+            </NavLink>
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to={"/doctors"}
+              className="hover:text-primary-light transition-colors">
+              <p className="px-3 py-2 rounded inline-block"> All Doctors</p>
+            </NavLink>
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to={"/about"}
+              className="hover:text-primary-light transition-colors">
+              <p className="px-3 py-2 rounded inline-block"> About</p>
+            </NavLink>
+            <NavLink
+              onClick={() => setShowMenu(false)}
+              to={"/contact"}
+              className="hover:text-primary-light transition-colors">
+              <p className="px-3 py-2 rounded inline-block">Contact</p>
+            </NavLink>
+          </div>
+        </div>
       </div>
     </div>
   );

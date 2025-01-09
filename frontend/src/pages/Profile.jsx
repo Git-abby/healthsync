@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { assets } from "../assets/assets";
 
 const Profile = () => {
-  const [isEditable, setIsEditable] = useState(true);
+  const [isEditable, setIsEditable] = useState(false);
   const [userData, setUserData] = useState({
     name: "John Doe",
     image: assets.profile_pic,
