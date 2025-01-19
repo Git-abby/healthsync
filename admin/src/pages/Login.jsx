@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AdminContext } from "../context/AdminContext";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const Login = () => {
   const [state, setState] = useState("Admin");
@@ -22,13 +23,17 @@ const Login = () => {
           localStorage.setItem("aToken", data.token);
           setAToken(data.token);
         }
+
+        toast(data.message);
       }
     } catch (error) {
       console.error(error.message);
     }
   };
   return (
-    <form onSubmit={onSubmitHandler} className="min-h-[80vh] flex items-center justify-center">
+    <form
+      onSubmit={onSubmitHandler}
+      className="min-h-[80vh] flex items-center justify-center">
       <div className="flex flex-col gap-3 m-auto items-start p-8 min-w-[340px] sm:min-w-96 border rounded-xl text-[#5e5e5e] text-sm shadow-lg">
         <p className="text-2xl font-semibold m-auto">
           <span className="text-primary">{state}</span> Login
