@@ -4,7 +4,7 @@ const userSchema = new mongoose.Schema({
   name: { type: String, required: true },
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-//   default image is set if user does not provide
+  //   default image is set if user does not provide
   image: {
     type: String,
     default:
@@ -16,6 +16,6 @@ const userSchema = new mongoose.Schema({
   phone: { type: String, default: "00000000000" },
 });
 
-const userModel = mongoose.models.user || mongoose.Model("user", userSchema);
+const userModel = mongoose.models.user || mongoose.model("user", userSchema);
 
 export default userModel;
