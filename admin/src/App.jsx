@@ -1,17 +1,23 @@
 import React, { useContext } from "react";
 import Login from "./pages/Login";
-import { Button } from "./components/ui/button";
 import { AdminContext } from "./context/AdminContext";
+
+// React Toastify for POP_UPS
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   const { aToken } = useContext(AdminContext);
-  console.log(aToken)
+  console.log(aToken);
   return aToken ? (
     <div>
-      <Login />
+      <>Admin BOLTE</>
+      <ToastContainer />
     </div>
   ) : (
-    <>Admin BOLTE</>
+    <>
+      <Login />
+      <ToastContainer />
+    </>
   );
 };
 
