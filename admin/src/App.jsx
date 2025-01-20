@@ -4,14 +4,15 @@ import { AdminContext } from "./context/AdminContext";
 
 // React Toastify for POP_UPS
 import { ToastContainer } from "react-toastify";
+import Navbars from "./components/Navbars";
 
 const App = () => {
   const { aToken } = useContext(AdminContext);
   console.log(aToken);
   return aToken ? (
     <div>
-      <>Admin BOLTE</>
       <ToastContainer />
+      <Navbars />
     </div>
   ) : (
     <>
