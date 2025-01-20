@@ -1,14 +1,12 @@
 import { createContext } from "react";
-
+import { assets } from "../assets/assets";
 export const AppContext = createContext();
 
 const AppContextProvider = (props) => {
-  const value = {};
+  const value = { assets };
 
   return (
-    <AppContext.Provider value={value}>
-      {props.children}
-    </AppContext.Provider>
+    <AppContext.Provider value={value}>{props.children}</AppContext.Provider>
   );
 };
 
