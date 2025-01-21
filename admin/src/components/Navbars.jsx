@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 import { assets } from "../assets/assets";
+import { AdminContext } from "../context/AdminContext";
 
 import {
   Disclosure,
@@ -20,6 +21,12 @@ const navigation = [
 ];
 const Navbars = () => {
   // const {assets} = useContext(AppContext);
+  const { aToken, setAToken } = useContext(AdminContext);
+
+  const signOut = async () => {
+    aToken && setAToken("");
+    localStorage.getItem("aToken") && localStorage.setItem("");
+  };
   return (
     <div>
       {/* <div className='border flex items-center'>
@@ -31,7 +38,7 @@ const Navbars = () => {
             </h3>
         </div> */}
       <Disclosure as="nav" className="bg-gray-800">
-        <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+        <div className="mx-auto px-2 sm:px-6 lg:px-8">
           <div className="relative flex h-16 items-center justify-between">
             <div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
               {/* Mobile menu button*/}
@@ -117,7 +124,7 @@ const Navbars = () => {
                   </MenuItem>
                   <MenuItem>
                     <a
-                      href="#"
+                      onClick={signOut}
                       className="block px-4 py-2 text-sm text-gray-700 data-[focus]:bg-gray-100 data-[focus]:outline-none">
                       Sign out
                     </a>
@@ -148,7 +155,6 @@ const Navbars = () => {
           </div>
         </DisclosurePanel>
       </Disclosure>
-      )
     </div>
   );
 };
