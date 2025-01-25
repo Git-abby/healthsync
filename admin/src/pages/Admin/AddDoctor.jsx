@@ -1,113 +1,304 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { assets } from "../../assets/assets";
+import { AdminContext } from "../../context/AdminContext";
+import { toast } from "react-toastify";
+import axios from "axios";
 
 const AddDoctor = () => {
+  const [img, setImg] = useState(false);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [speciality, setSpeciality] = useState("");
+  const [password, setPassword] = useState("");
+  const [degree, setDegree] = useState("");
+  const [experience, setExperience] = useState("");
+  const [address, setAddress] = useState({
+    address_line_1: "",
+    address_line_2: "",
+  });
+  const [about, setAbout] = useState("");
+  const [fees, setFees] = useState(0);
+
+  // get the token from admin context
+  const { aToken, baseURL } = useContext(AdminContext);
+
+  // HandleSubmit for Adding doctor
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    // Check if any field is empty
+    try {
+      if (!img) {
+        return toast.error("Image not selected!");
+      }
+      if (
+        !name.trim() ||
+        !email.trim() ||
+        !speciality.trim() ||
+        !degree.trim() ||
+        !experience.trim() ||
+        !address ||
+        !about.trim() ||
+        !fees ||
+        !password
+      ) {
+        return toast.error("All fields must be filled");
+      }
+      // Create a new FormData object
+      const formData = new FormData();
+
+      // Append all fields to FormData
+      formData.append("img", img); // File
+      formData.append("name", name);
+      formData.append("email", email);
+      formData.append("password", password);
+      formData.append("speciality", speciality);
+      formData.append("degree", degree);
+      formData.append("experience", experience);
+      formData.append("address", JSON.stringify(address));
+      formData.append("about", about);
+      formData.append("fees", fees);
+
+      const { data } = await axios.post(
+        baseURL + "/api/admin/add-doctor",
+        formData,
+        {
+          headers: { aToken },
+        }
+      );
+      console.log(data);
+      if (data.success) {
+        toast.success(data.message);
+      } else {
+        toast.error(data.message);
+      }
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
   return (
-    <div class="bg-white border-4 rounded-lg shadow relative w-full">
-      <div class="flex items-start justify-between p-5 border-b rounded-t">
-        <h3 class="text-xl font-semibold">Add Doctor</h3>
-        <button
-          type="button"
-          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 ml-auto inline-flex items-center"
-          data-modal-toggle="product-modal">
-          <svg
-            class="w-5 h-5"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg">
-            <path
-              fill-rule="evenodd"
-              d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
-              clip-rule="evenodd"></path>
-          </svg>
-        </button>
+    <div className="bg-white p-8 rounded-lg shadow-md w-full mx-auto">
+      {/* Header */}
+      <div className="flex justify-between items-center pb-4 border-b">
+        <h3 className="text-2xl font-semibold text-gray-800">Add Doctor</h3>
       </div>
 
-      <div class="p-6 space-y-6">
-        <form action="#">
-          <div class="grid grid-cols-6 gap-6">
-            <div class="col-span-6 sm:col-span-3">
-              <label
-                for="product-name"
-                class="text-sm font-medium text-gray-900 block mb-2">
-                Product Name
-              </label>
-              <input
-                type="text"
-                name="product-name"
-                id="product-name"
-                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder="Apple Imac 27”"
-                required=""
-              />
-            </div>
-            <div class="col-span-6 sm:col-span-3">
-              <label
-                for="category"
-                class="text-sm font-medium text-gray-900 block mb-2">
-                Category
-              </label>
-              <input
-                type="text"
-                name="category"
-                id="category"
-                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder="Electronics"
-                required=""
-              />
-            </div>
-            <div class="col-span-6 sm:col-span-3">
-              <label
-                for="brand"
-                class="text-sm font-medium text-gray-900 block mb-2">
-                Brand
-              </label>
-              <input
-                type="text"
-                name="brand"
-                id="brand"
-                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder="Apple"
-                required=""
-              />
-            </div>
-            <div class="col-span-6 sm:col-span-3">
-              <label
-                for="price"
-                class="text-sm font-medium text-gray-900 block mb-2">
-                Price
-              </label>
-              <input
-                type="number"
-                name="price"
-                id="price"
-                class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5"
-                placeholder="$2300"
-                required=""
-              />
-            </div>
-            <div class="col-span-full">
-              <label
-                for="product-details"
-                class="text-sm font-medium text-gray-900 block mb-2">
-                Product Details
-              </label>
-              <textarea
-                id="product-details"
-                rows="6"
-                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-4"
-                placeholder="Details"></textarea>
-            </div>
-          </div>
-        </form>
-      </div>
+      {/* Form */}
+      <form className="space-y-6 mt-4" onSubmit={handleSubmit}>
+        {/* Image Upload */}
+        <div>
+          <label
+            htmlFor="doctor-img"
+            className="block text-sm font-medium text-gray-700 mb-2">
+            Upload Doctor's Picture
+          </label>
+          <input
+            onChange={(e) => setImg(e.target.files[0])}
+            type="file"
+            id="doctor-img"
+            style={{ display: "none" }}
+            // required
+            name="doctor-img"
+          />
+          <label
+            htmlFor="doctor-img"
+            className={`flex items-center justify-center w-32 h-32 ${
+              img ? "bg-primary-light" : "bg-gray-100 hover:bg-gray-300"
+            }  border border-dashed border-gray-300 rounded-full p-[2px] cursor-pointer`}>
+            <img
+              src={img ? URL.createObjectURL(img) : assets.upload_area}
+              alt="Upload icon"
+              className="w-[100%] h-[100%] object-contain rounded-full"
+              name="doctor-img"
+            />
+          </label>
+          <p className="text-sm text-gray-500 mt-2">
+            Click to upload a picture
+          </p>
+        </div>
 
-      <div class="p-6 border-t border-gray-200 rounded-b">
+        {/* Name */}
+        <div>
+          <label
+            htmlFor="name"
+            className="block text-sm font-medium text-gray-700 mb-2">
+            Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500"
+            placeholder="Doctor's Name"
+          />
+        </div>
+
+        {/* Speciality */}
+        <div>
+          <label
+            htmlFor="speciality"
+            className="block text-sm font-medium text-gray-700 mb-2">
+            Speciality
+          </label>
+          <select
+            onChange={(e) => setSpeciality(e.target.value)}
+            value={speciality}
+            id="speciality"
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500">
+            <option value={""}>Select Speciality</option>
+            <option value={"General Physician"}>General Physician</option>
+            <option value={"Dermatologist"}>Dermatologist</option>
+            <option value={"Cardiologist"}>Cardiologist</option>
+          </select>
+        </div>
+
+        {/* Email */}
+        <div>
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700 mb-2">
+            Email
+          </label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500"
+            placeholder="doctor@example.com"
+          />
+        </div>
+
+        {/* degree */}
+        <div>
+          <label
+            htmlFor="degree"
+            className="block text-sm font-medium text-gray-700 mb-2">
+            Degree
+          </label>
+          <input
+            type="text"
+            id="degree"
+            value={degree}
+            onChange={(e) => setDegree(e.target.value)}
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500"
+            placeholder="e.g., MBBS, MD"
+          />
+        </div>
+
+        {/* Experience */}
+        <div>
+          <label
+            htmlFor="experience"
+            className="block text-sm font-medium text-gray-700 mb-2">
+            Experience
+          </label>
+          <select
+            onChange={(e) => setExperience(e.target.value)}
+            value={experience}
+            id="experience"
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500">
+            <option value={""}>Select Experience Level</option>
+            {Array.from({ length: 10 }, (_, i) => (
+              <option key={i + 1} value={`${i + 1} Year${i > 0 ? "s" : ""}`}>
+                {i + 1} Year{i > 0 ? "s" : ""}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Password */}
+        <div>
+          <label
+            htmlFor="password"
+            className="block text-sm font-medium text-gray-700 mb-2">
+            Create Password
+          </label>
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            value={password}
+            type="password"
+            id="password"
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500"
+            placeholder="Password"
+          />
+        </div>
+
+        {/* Address */}
+        <div>
+          <label
+            htmlFor="address"
+            className="block text-sm font-medium text-gray-700 mb-2">
+            Address
+          </label>
+          <input
+            onChange={(e) =>
+              setAddress((prev) => ({
+                ...prev,
+                address_line_1: e.target.value,
+              }))
+            }
+            value={address.address_line_1}
+            id="address1"
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500"
+            rows="1"
+            placeholder="Address line 1"
+          />
+          <input
+            onChange={(e) =>
+              setAddress((prev) => ({
+                ...prev,
+                address_line_2: e.target.value,
+              }))
+            }
+            value={address.address_line_2}
+            id="address2"
+            className="w-full mt-1 p-2 border border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500"
+            rows="1"
+            placeholder="Address line 2"
+          />
+        </div>
+        {/* Fees */}
+        <div>
+          <label
+            htmlFor="fees"
+            className="block text-sm font-medium text-gray-700 mb-2">
+            Doctor's Fees
+          </label>
+          <input
+            onChange={(e) => setFees(e.target.value)}
+            value={fees}
+            type="number"
+            id="fees"
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500"
+            placeholder="Consultation fees"
+          />
+        </div>
+
+        {/* About */}
+        <div>
+          <label
+            htmlFor="about"
+            className="block text-sm font-medium text-gray-700 mb-2">
+            About
+          </label>
+          <textarea
+            onChange={(e) => setAbout(e.target.value)}
+            value={about}
+            id="about"
+            className="w-full p-2 border border-gray-300 rounded-md focus:ring-cyan-500 focus:border-cyan-500"
+            rows="4"
+            placeholder="Write about the doctor"></textarea>
+        </div>
+
+        {/* Submit Button */}
         <button
-          class="text-white bg-cyan-600 hover:bg-cyan-700 focus:ring-4 focus:ring-cyan-200 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-          type="submit">
-          Save all
+          type="submit"
+          className="w-full bg-cyan-600 text-white font-medium py-2.5 rounded-md hover:bg-cyan-700 focus:outline-none focus:ring-2 focus:ring-cyan-400">
+          Add Doctor
         </button>
-      </div>
+      </form>
     </div>
   );
 };

@@ -16,7 +16,7 @@ import AllAppointments from "./pages/Admin/AllAppointments";
 
 const App = () => {
   const { aToken } = useContext(AdminContext);
-  console.log(aToken);
+
   return aToken ? (
     <div>
       <ToastContainer />
