@@ -32,7 +32,7 @@ const TopDoctors = () => {
 
               <div className="flex flex-col gap-1.5 p-4">
                 <div className="flex items-center gap-1">
-                  <span class="h-3 w-3 rounded-full border border-white bg-green-500 block"></span>
+                  <span className="h-3 w-3 rounded-full border border-white bg-green-500 block"></span>
                   <p className="text-green-500 font-thin">Available</p>
                 </div>
                 <h4 className="text-gray-800 text-base font-bold">
