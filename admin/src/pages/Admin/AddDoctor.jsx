@@ -5,6 +5,10 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 const AddDoctor = () => {
+  const addobj = {
+    address_line_1: "",
+    address_line_2: "",
+  };
   const [img, setImg] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -12,10 +16,7 @@ const AddDoctor = () => {
   const [password, setPassword] = useState("");
   const [degree, setDegree] = useState("");
   const [experience, setExperience] = useState("");
-  const [address, setAddress] = useState({
-    address_line_1: "",
-    address_line_2: "",
-  });
+  const [address, setAddress] = useState(addobj);
   const [about, setAbout] = useState("");
   const [fees, setFees] = useState(0);
 
@@ -48,7 +49,7 @@ const AddDoctor = () => {
       const formData = new FormData();
 
       // Append all fields to FormData
-      formData.append("img", img); // File
+      formData.append("image", img); // File
       formData.append("name", name);
       formData.append("email", email);
       formData.append("password", password);
@@ -69,6 +70,16 @@ const AddDoctor = () => {
       console.log(data);
       if (data.success) {
         toast.success(data.message);
+        setName("");
+        setEmail("");
+        setDegree("");
+        setPassword("");
+        setImg(false);
+        setAddress(addobj);
+        setAbout("");
+        setSpeciality("");
+        setExperience("");
+        setFees("");
       } else {
         toast.error(data.message);
       }
@@ -150,6 +161,9 @@ const AddDoctor = () => {
             <option value={"General Physician"}>General Physician</option>
             <option value={"Dermatologist"}>Dermatologist</option>
             <option value={"Cardiologist"}>Cardiologist</option>
+            <option value={"Pediatrician"}>Pediatrician</option>
+            <option value={"Gynecologist"}>Gynecologist</option>
+            <option value={"Neurologist"}>Neurologist</option>
           </select>
         </div>
 
