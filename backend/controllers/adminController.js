@@ -107,4 +107,16 @@ const adminLogin = async (req, res) => {
   }
 };
 
-export { addDoctor, adminLogin };
+// To get all doctors for admin panel
+const getAlldoctors = async (req, res) => {
+  try {
+    // excluded 'password' field
+    const doctors = await doctorModel.find({}).select("-passwprd");
+    res.json({ success: true, doctors });
+  } catch (error) {
+      console.error(error);
+      res.json({ success: false, message: `${error.message}` });
+  }
+};
+
+export { addDoctor, adminLogin, getAlldoctors };
