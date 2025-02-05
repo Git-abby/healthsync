@@ -1,5 +1,5 @@
 import validator from "validator";
-import bycrypt from "bcrypt";
+import bcrypt from "bcrypt";
 import { v2 as cloudinary } from "cloudinary";
 import jwt from "jsonwebtoken";
 
@@ -50,8 +50,8 @@ const addDoctor = async (req, res) => {
     }
 
     //hashing doctor pass
-    const salt = await bycrypt.genSalt(10);
-    const hashedPassword = await bycrypt.hash(password, salt);
+    const salt = await bcrypt.genSalt(10);
+    const hashedPassword = await bcrypt.hash(password, salt);
 
     // uploading image to cloudinary
     const imageUploadToCloudinary = await cloudinary.uploader.upload(
@@ -107,4 +107,16 @@ const adminLogin = async (req, res) => {
   }
 };
 
-export { addDoctor, adminLogin };
+// To get all doctors for admin panel
+const getAlldoctors = async (req, res) => {
+  try {
+    // excluded 'password' field
+    const doctors = await doctorModel.find({}).select("-passwprd");
+    res.json({ success: true, doctors });
+  } catch (error) {
+      console.error(error);
+      res.json({ success: false, message: `${error.message}` });
+  }
+};
+
+export { addDoctor, adminLogin, getAlldoctors };

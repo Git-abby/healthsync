@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { assets } from "../assets/assets";
 import { NavLink, useNavigate } from "react-router-dom";
 
@@ -6,14 +6,17 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { ArrowDropDown, ArrowDropDownCircle } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
 import CloseIcon from "@mui/icons-material/Close";
+import { AppContext } from "../contexts/AppContext";
 
 const Navbar = () => {
   const navigate = useNavigate();
   const [showMenu, setShowMenu] = useState(false);
-  const [token, setToken] = useState(true);
+  const { token, setToken } = useContext(AppContext);
+  // const [token, setToken] = useState(true);
 
   const handleLogout = () => {
     setToken(false);
+    localStorage.removeItem("token");
     navigate("/");
   };
   return (

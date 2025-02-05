@@ -14,7 +14,7 @@ const SideBar = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="flex h-[calc(100vh-64px)] bg-gray-100">
+    <div className="flex min-h-[calc(100vh-64px)] bg-gray-100">
       {/* <!-- sidebar --> */}
       {aToken && (
         <div className="hidden md:flex flex-col w-64 bg-gray-800">
