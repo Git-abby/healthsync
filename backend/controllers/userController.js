@@ -21,7 +21,7 @@ const registerUser = async (req, res) => {
       });
     }
 
-    // hashing our password 
+    // hashing our password
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
@@ -84,13 +84,18 @@ const getUserData = async (req, res) => {
 // API to update user data
 const updateUserData = async (req, res) => {
   try {
-    const { userId, name, email, phone, address } = req.body;
+    const { id, name, email, phone, address } = req.body;
     const imageFile = req.file;
 
     if (!name || !email || !phone || !address) {
-      return res, json({ success: false, message: "All fields are required!" });
+      return res.json({ success: false, message: "All fields are required!" });
     }
-    await userModel.findByIdAndUpdate(userId, { name, email, phone, address });
+    await userModel.findByIdAndUpdate(id, {
+      name,
+      email,
+      phone,
+      address: JSON.parse(address),
+    });
 
     if (imageFile) {
       // upload image to cloudinary
@@ -100,7 +105,10 @@ const updateUserData = async (req, res) => {
       );
       const imageURL = imageUploadtoCloudinary.secure_url;
 
-      await userModel.findByIdAndUpdate(userId, { image: imageURL });
+      await userModel.findByIdAndUpdate(id, { image: imageURL });
+
+      const userData = await userModel.findById(id).select("-password");
+      console.log(userData);
     }
 
     res.json({ success: true, message: "Profile updated successfully" });
