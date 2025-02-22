@@ -108,7 +108,7 @@ const updateUserData = async (req, res) => {
       await userModel.findByIdAndUpdate(id, { image: imageURL });
 
       const userData = await userModel.findById(id).select("-password");
-      console.log(userData);
+      console.log("User>>", userData);
     }
 
     res.json({ success: true, message: "Profile updated successfully" });
