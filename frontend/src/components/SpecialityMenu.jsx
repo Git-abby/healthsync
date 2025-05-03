@@ -16,21 +16,21 @@ const SpecialityMenu = () => {
           background, read patient reviews and schedule an appointment.
         </p>
         <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-12 max-md:max-w-lg mx-auto">
-          {specialityData.map(
-            (item, index) => (
-              <div key={index} className="flex flex-col items-center justify-center gap-2 rounded-xl group p-8 text-center hover:bg-white text-white hover:text-purple-800 hover:shadow-xl transition duration-300">
+          {specialityData.map((item, index) => (
+            <Link to={`/doctors/${item.speciality}`}>
+              <div
+                key={index}
+                className="flex flex-col items-center justify-center gap-2 rounded-xl group p-8 text-center hover:bg-white text-white hover:text-purple-800 hover:shadow-xl transition duration-300">
                 <img src={item.image} alt="speciality" />
                 <h3 className="text-xl font-semibold mb-3">
-                 <Link to={`/doctors/${item.speciality}`}>
-                 {item.speciality}
-                 </Link> 
+                  {item.speciality}
                 </h3>
                 <p className="text-gray-300 group-hover:text-gray-500 text-sm">
                   {item.description}
                 </p>
               </div>
-            )
-          )}
+            </Link>
+          ))}
         </div>
       </div>
     </div>

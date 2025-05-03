@@ -1,13 +1,17 @@
 import React, { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { AppContext } from "../contexts/AppContext";
 import { assets } from "../assets/assets";
-import { Button } from "react-scroll";
+// import { Button } from "react-scroll";
 import RelatedDoctors from "../components/RelatedDoctors";
+import { toast } from "react-toastify";
 
 const Appointments = () => {
+  const navigate = useNavigate();
   const { docId } = useParams();
-  const { doctors, currencySymbol } = useContext(AppContext);
+  console.log(docId);
+  const { doctors, currencySymbol, getAllDoctors, baseURL, token } =
+    useContext(AppContext);
   const [doctorInfo, setDoctorInfo] = useState([]);
   const [docSlots, setDocSlots] = useState([]);
   const [slotIndex, setSlotIndex] = useState(0);
@@ -64,6 +68,7 @@ const Appointments = () => {
     }
     // Update state once with all slots
     setDocSlots(collectedSlots);
+    console.log(docSlots)
   };
 
   const fetchDoctorInfo = async () => {
@@ -84,6 +89,16 @@ const Appointments = () => {
   useEffect(() => {
     console.log(docSlots);
   }, [docSlots]);
+
+  const bookAppointment = async () => {
+    try {
+      if (!token) {
+        toast.warn("Please login first!");
+        return navigate("/login");
+      }
+    } catch (error) {}
+  };
+
   return (
     <div className="flex flex-col gap-8 font-[sans-serif] max-w-5xl max-sm:max-w-sm mx-auto p-4">
       <div className="flex gap-8 font-[sans-serif] max-w-5xl max-sm:max-w-sm mx-auto p-4">
@@ -124,9 +139,7 @@ const Appointments = () => {
           </div>
 
           <div className="space-x-3 mt-8">
-            <a
-              href=""
-              className="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none bg-blue-600 hover:bg-blue-700 active:bg-blue-600">
+            <a className="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none bg-blue-600 hover:bg-blue-700 active:bg-blue-600">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="14px"
@@ -138,9 +151,7 @@ const Appointments = () => {
                 />
               </svg>
             </a>
-            <a
-              href=""
-              className="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none bg-[#03a9f4] hover:bg-[#03a1f4] active:bg-[#03a9f4]">
+            <a className="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none bg-[#03a9f4] hover:bg-[#03a1f4] active:bg-[#03a9f4]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="14px"
@@ -152,9 +163,7 @@ const Appointments = () => {
                 />
               </svg>
             </a>
-            <a
-              href=""
-              className="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none bg-[#0077b5] hover:bg-[#0055b5] active:bg-[#0077b5]">
+            <a className="w-7 h-7 inline-flex items-center justify-center rounded-full border-none outline-none bg-[#0077b5] hover:bg-[#0055b5] active:bg-[#0077b5]">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 width="14px"
@@ -208,10 +217,15 @@ const Appointments = () => {
           </div>
         </div>
         <div>
-          <Button className="bg-primary text-white py-2 px-6 rounded-full  transition-all outline-none hover:scale-105">Book Appointment</Button>
+          <button
+            type="button"
+            onClick={bookAppointment}
+            className="bg-primary text-white py-2 px-6 rounded-full  transition-all outline-none hover:scale-105">
+            Book Appointment
+          </button>
         </div>
       </div>
-      <RelatedDoctors id={docId} speciality={doctorInfo.speciality}/>
+      <RelatedDoctors id={docId} speciality={doctorInfo.speciality} />
     </div>
   );
 };
